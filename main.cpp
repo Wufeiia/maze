@@ -1,6 +1,7 @@
 //Wufei Luo
 //maze solver program
 //June 13, 2020
+//Condition: S needs to be at 0,0.
 #include <iostream>
 #include <fstream>
 #include "apmatrix.h"
@@ -38,7 +39,7 @@ int main() {
             }
         }
     }
-
+    //run my functions
     findPath(x, y, map1);
 
     //output result
@@ -55,6 +56,7 @@ int main() {
 
 void findPath(int x, int y, apmatrix<char> &m){
     //cout << x << " " << y << endl;
+
     if(m[y][x]=='G'){
         cout << "end" << endl;
     }
