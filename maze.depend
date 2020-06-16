@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1592077581 source:c:\cs12\maze\main.cpp
+1592353181 source:c:\cs12\maze\main.cpp
 	<iostream>
 	<fstream>
 	"apmatrix.h"
@@ -23,7 +23,7 @@
 1592004119 source:c:\cs12\maze\stack.cpp
 	"stack.h"
 
-1592070791 c:\cs12\maze\stack.h
+1592077898 c:\cs12\maze\stack.h
 	<iostream>
 
 1592004111 c:\cs12\maze\stack.cpp

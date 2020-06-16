@@ -76,7 +76,7 @@ void findPath(int x, int y, apmatrix<char> &m){
 
     }else{
         //if returned to start, there's no solution
-        if(path.top == 0){
+        if(m[y][x]=='S'){
             cout << "no solution"<< endl;
 
         }else{
@@ -107,6 +107,6 @@ bool checkPath(int x, int y, apmatrix<char> &m){
         return true;
 
     }else{
-        return false;
+        return false; //unknown signs?
     }
 }
