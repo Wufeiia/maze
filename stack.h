@@ -6,7 +6,7 @@ using namespace std;
 const int Max = 20;
 
 class Stack{
-    public:
+    public: //to make things easier...
         float userArray[Max];
         int top;
     //public:
