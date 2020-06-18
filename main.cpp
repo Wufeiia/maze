@@ -36,9 +36,13 @@ int main() {
             if(map1[i][j] == 'S'){
                 x = j;
                 y = i;
+                map1[i][j] = ','; //record S as the first point visited
             }
         }
     }
+    int tempx = x;
+    int tempy = y;
+    path.push(y*row+x); //record the S position in case I have to go through it
     //run my functions
     findPath(x, y, map1);
 
@@ -47,6 +51,7 @@ int main() {
         for(int j=0; j<col; j++){
             if(map1[i][j] == ','){
                 map1[i][j] = '.'; //get rid of the visited sign
+                map1[tempy][tempx] = 'S';
             }
             cout << map1[i][j];
         }
@@ -76,39 +81,39 @@ void findPath(int x, int y, apmatrix<char> &m){
     else if(checkPath(x-1, y, m) == true){
         findPath(--x, y, m);
 
-    }else{
-        //if returned to start, there's no solution
-        if(m[y][x]=='S'){
-            cout << "no solution"<< endl;
+    }else if(x<col && x>0 && y<row && y>0 && !path.isEmpty()){ //if still in bound and stack isn't empty but nowhere to go, go back
+        m[y][x] = ','; //let ',' be a visited sign for now
+        int temp = path.pop(); //get the number on the stack that keeps track
+        y = temp/row; //re-calculate x and y
+        x = temp%row;
+        findPath(x, y, m); //go back and retry
+    }
 
-        }else{
-            m[y][x] = ','; //let ',' be a visited sign for now
-            int temp = path.pop(); //get the number on the stack that keeps track
-            y = temp/row; //re-calculate x and y
-            x = temp%row;
-            findPath(x, y, m); //go back and retry
+    //if nothing else to do, there's no solution
+    else{
+        cout << "no solution"<< endl;
         }
     }
-}
+
 
 bool checkPath(int x, int y, apmatrix<char> &m){
     //out of map
     if( x>=col || x<0 || y>=row || y<0){
         return false;
     }
-    if(m[y][x]=='.'){
+    if(m[y][x]=='.' || m[y][x] == 'S'){ //let S be a point that can be recorded and be passed through
         m[y][x] = '+';
         path.push(y*row+x); // change x and y to a single number to indicate position
         //and putting it in the stack
         return true;
     }
-    if(m[y][x] == '#'){
+    if(m[y][x] == '#' || m[y][x] == ','){
         return false;
     }
     if(m[y][x] == 'G'){
         return true;
-
-    }else{
+    }
+    else{
         return false; //unknown signs?
     }
 }
